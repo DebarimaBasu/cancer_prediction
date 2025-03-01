@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { StateContextProvider } from "./context";
-import App from "./App";
+import App from "./App"
 import "./index.css";
 import { PrivyProvider } from "@privy-io/react-auth";
 
