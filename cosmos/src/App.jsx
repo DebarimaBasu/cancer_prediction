@@ -20,6 +20,7 @@ const App = () => {
   }, [user, authenticated, ready, login, currentUser, navigate]);
 
   return (
+    
     <div className="sm:-8 relative flex min-h-screen flex-row bg-[#13131a] p-4">
       <div className="relative mr-10 hidden sm:flex">
         <Sidebar />
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/medical-records" element={<MedicalRecords />} />
+          <Route path="/predictForm" element={<PredictForm/>}/>
           <Route
             path="/medical-records/:id"
             element={<SingleRecordDetails />}
