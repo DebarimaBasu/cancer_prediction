@@ -1,4 +1,4 @@
-import { records, screening, user, apps } from "../assets";
+import { records, screening, user, apps,predict } from "../assets";
 
 export const navlinks = [
   {
@@ -22,4 +22,9 @@ export const navlinks = [
     imgUrl: user,
     link: "/profile",
   },
+  {
+    name:"predict",
+    imgUrl:predict,
+    link:"/predictForm"
+  }
 ];
