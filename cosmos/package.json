@@ -38,7 +38,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^2",
     "autoprefixer": "^10.4.13",
-    "drizzle-kit": "^0.23.0",
+    "drizzle-kit": "^0.23.2",
     "postcss": "^8.4.19",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
