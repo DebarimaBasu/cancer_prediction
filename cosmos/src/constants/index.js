@@ -1,4 +1,5 @@
-import { records, screening, user, apps,predict } from "../assets";
+import { records, screening, user, apps } from "../assets";
+//predict will be added later
 
 export const navlinks = [
   {

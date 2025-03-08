@@ -1,3 +1,4 @@
+import predict from "./predict.svg";
 import sun from "./sun.svg";
 import search from "./search.svg";
 import menu from "./menu.svg";
