@@ -25,7 +25,7 @@ const DisplayInfo = () => {
   });
 
   useEffect(() => {
-    if (user) {
+    if (user?.email?.address) {
       fetchUserByEmail(user.email.address)
         .then(() => {
           console.log(records);
