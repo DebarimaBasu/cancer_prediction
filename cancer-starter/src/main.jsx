@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { StateContextProvider } from "./context";
-import App from "./App"
+//import { StateContextProvider } from "./context";
+import App from "./App";
 import "./index.css";
 import { PrivyProvider } from "@privy-io/react-auth";
 
@@ -11,20 +11,21 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <PrivyProvider
-    appId="cm81dqpu9031kpvbrbrrsq5b6"
+    appId="cm7ql395d027u109f3qajk7ce"
     config={{
       appearance: {
         theme: "dark",
       },
-      embeddedWallets: {
-        createOnLogin: "users-without-wallets",
-      },
+    //   embeddedWallets: {
+    //     createOnLogin: "users-without-wallets",
+    //   },
     }}
   >
     <Router>
-      <StateContextProvider>
+      {/* <StateContextProvider>
         <App />
-      </StateContextProvider>
-    </Router>
+      </StateContextProvider>*/}
+       <App />
+    </Router> 
   </PrivyProvider>,
 );
