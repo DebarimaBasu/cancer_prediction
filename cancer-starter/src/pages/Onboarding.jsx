@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 
 const Onboarding = () => {
-
+    // const { createUser } = useStateContext();
   const [username, setUsername] = useState("");
   const [age, setAge] = useState("");
   const [location, setLocation] = useState("");
@@ -31,7 +31,7 @@ const { user } = useUser();
     // if (newUser) {
     //   navigate("/profile");
     // }
-    console.log("user", user);
+    console.log(username, age, location);
   };
 
   return (
