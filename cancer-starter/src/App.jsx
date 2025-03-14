@@ -1,6 +1,8 @@
 import React from 'react'
 import { Sidebar, Navbar } from "./components";
 import { Route, Routes, useNavigate } from "react-router-dom";
+
+import { Home, Onboarding } from "./pages";
 const App = () => {
 return (
     <div className="sm:-8 relative flex min-h-screen flex-row bg-[#13131a] p-4">
@@ -12,9 +14,10 @@ return (
          <Navbar /> 
 
         <Routes>
-          <Route path="/" element={<div>suor </div>} />
+          <Route path="/" element={<Home/>} />
+           <Route path="/onboarding" element={<Onboarding />} />
           {/* <Route path="/profile" element={<Profile />} />
-          <Route path="/onboarding" element={<Onboarding />} />
+         
           <Route path="/medical-records" element={<MedicalRecords />} />
           <Route
             path="/medical-records/:id"
