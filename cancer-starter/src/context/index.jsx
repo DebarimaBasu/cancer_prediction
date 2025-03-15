@@ -24,19 +24,42 @@ export const StateContextProvider = ({ children }) => {
 
   // Function to fetch user details by email
   const fetchUserByEmail = useCallback(async (email) => {
+    if (!email) return; // Prevent calling with undefined
+  
     try {
       const result = await db
         .select()
         .from(Users)
         .where(eq(Users.createdBy, email))
         .execute();
+  
       if (result.length > 0) {
-        setCurrentUser(result[0]);
+        console.log("User found:", result[0]); // Debugging
+        setCurrentUser(result[0]); // ✅ Set only one user
+      } else {
+        console.log("No user found, redirecting to onboarding"); // Debugging
+        setCurrentUser(null); // Ensure it's null so the redirect happens
       }
     } catch (error) {
       console.error("Error fetching user by email:", error);
     }
   }, []);
+  
+  
+  // const fetchUserByEmail = useCallback(async (email) => {
+  //   try {
+  //     const result = await db
+  //       .select()
+  //       .from(Users)
+  //       .where(eq(Users.createdBy, email))
+  //       .execute();
+  //     if (result.length > 0) {
+  //       setCurrentUser(result[0]);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching user by email:", error);
+  //   }
+  // }, []);
 
   // Function to create a new user
   const createUser = useCallback(async (userData) => {

@@ -8,10 +8,12 @@ const Profile = () => {
   const { user } = useUser();
 
   useEffect(() => {
-    if (!currentUser) {
-      fetchUserByEmail(user?.email?.address);
+    if (!currentUser && user?.primaryEmailAddress?.emailAddress) {
+      console.log("Fetching user:", user.primaryEmailAddress.emailAddress); // Debugging
+      fetchUserByEmail(user.primaryEmailAddress.emailAddress);
     }
-  }, [currentUser, fetchUserByEmail]);
+  }, [currentUser, fetchUserByEmail, user]);
+  
 
   if (!currentUser) {
     return (
