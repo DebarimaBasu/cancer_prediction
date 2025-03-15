@@ -1,9 +1,37 @@
 import React from 'react'
 import { Sidebar, Navbar } from "./components";
 import { Route, Routes, useNavigate } from "react-router-dom";
-
-import { Home, Onboarding } from "./pages";
+import { useStateContext } from "./context";
+import { useAuth, useClerk, useUser } from "@clerk/clerk-react";
+import { useEffect } from "react";
+import { Home, Onboarding,Profile } from "./pages";
+import { Buffer } from "buffer";
 const App = () => {
+  const {  currentUser,fetchUserByEmail  } = useStateContext();
+  const { isSignedIn, user,isLoaded, } = useUser();
+  const { redirectToSignIn } = useClerk();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!window.Buffer) {
+      window.Buffer = Buffer;
+    }
+  }, []);
+  
+  useEffect(() => {
+    if (!isLoaded) return; // Wait until Clerk is fully loaded
+
+    if (!isSignedIn) {
+      redirectToSignIn(); // Redirect only if user is NOT signed in
+    } else if (user) {
+      fetchUserByEmail(user.primaryEmailAddress); // Fetch user details
+    }
+  }, [isSignedIn, user, fetchUserByEmail, redirectToSignIn, isLoaded]);
+
+  useEffect(() => {
+    if (user && currentUser === null) {
+      navigate("/onboarding"); // Redirect ONLY if the user is signed in but not in the database
+    }
+  }, [user, currentUser, navigate]);
 return (
     <div className="sm:-8 relative flex min-h-screen flex-row bg-[#13131a] p-4">
       <div className="relative mr-10 hidden sm:flex">
@@ -16,14 +44,14 @@ return (
         <Routes>
           <Route path="/" element={<Home/>} />
            <Route path="/onboarding" element={<Onboarding />} />
-          {/* <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} /> 
          
-          <Route path="/medical-records" element={<MedicalRecords />} />
+          {/* <Route path="/medical-records" element={<MedicalRecords />} />
           <Route
             path="/medical-records/:id"
             element={<SingleRecordDetails />}
           />
-          <Route path="/screening-schedules" element={<ScreeningSchedule />} /> */}
+          <Route path="/screening-schedules" element={<ScreeningSchedule />} /> */} 
         </Routes>
       </div>
     </div>

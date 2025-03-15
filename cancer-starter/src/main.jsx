@@ -2,15 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ClerkProvider } from '@clerk/clerk-react'
-import { Buffer } from 'buffer';
-window.Buffer = Buffer;
+
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key")
 }
 
 
-//import { StateContextProvider } from "./context";
+import { StateContextProvider } from "./context";
 import App from "./App";
 import "./index.css";
 // import { PrivyProvider } from "@privy-io/react-auth";
@@ -32,16 +31,18 @@ root.render(
   // <React.StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
     <Router>
+    
+      <StateContextProvider>
+       
       <App />
+      </StateContextProvider>
       </Router>
     </ClerkProvider>
   
   // </React.StrictMode>,
     
-      /* <StateContextProvider>
-        <App />
-      </StateContextProvider>*/
-       
+      
+      
    
   //</PrivyProvider>,
 );
