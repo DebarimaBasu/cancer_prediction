@@ -132,7 +132,14 @@ const Onboarding = () => {
       folders: [],
       treatmentCounts: 0,
       folder: [],
-      createdBy:user.primaryEmailAddress.emailAddress,  // Clerk email
+      createdBy: user.primaryEmailAddress.emailAddress,
+
+    
+
+      // createdBy:user.primaryEmailAddress.emailAddress, 
+     
+
+
     };
     console.log(userData);
     const newUser = await createUser(userData);

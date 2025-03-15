@@ -18,7 +18,7 @@ const App = () => {
   }, []);
   
   useEffect(() => {
-    if (!isLoaded) return; // Wait until Clerk is fully loaded
+   if (!isLoaded) return; 
 
     if (!isSignedIn) {
       redirectToSignIn(); // Redirect only if user is NOT signed in
@@ -29,6 +29,7 @@ const App = () => {
 
   useEffect(() => {
     if (user && currentUser === null) {
+      console.log("Redirecting to onboarding");
       navigate("/onboarding"); // Redirect ONLY if the user is signed in but not in the database
     }
   }, [user, currentUser, navigate]);

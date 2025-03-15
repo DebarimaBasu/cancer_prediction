@@ -7,12 +7,18 @@ const Profile = () => {
   const { currentUser, fetchUserByEmail } = useStateContext();
   const { user } = useUser();
 
+  // useEffect(() => {
+  //   if (!currentUser && user?.primaryEmailAddress?.emailAddress) {
+  //     console.log("Fetching user:", user.primaryEmailAddress.emailAddress); // Debugging
+  //     fetchUserByEmail(user.primaryEmailAddress.emailAddress);
+  //   }
+  // }, [currentUser, fetchUserByEmail, user]);
   useEffect(() => {
-    if (!currentUser && user?.primaryEmailAddress?.emailAddress) {
-      console.log("Fetching user:", user.primaryEmailAddress.emailAddress); // Debugging
+    if (user?.primaryEmailAddress?.emailAddress && currentUser === null) {
+      console.log("Fetching user:", user.primaryEmailAddress.emailAddress);
       fetchUserByEmail(user.primaryEmailAddress.emailAddress);
     }
-  }, [currentUser, fetchUserByEmail, user]);
+  }, [user, currentUser]);
   
 
   if (!currentUser) {
@@ -22,6 +28,10 @@ const Profile = () => {
       </div>
     );
   }
+  console.log("User:", user);
+  console.log("Primary Email:", user?.primaryEmailAddress?.emailAddress);
+  
+
 
   return (
     <div className="mx-auto mt-16 max-w-lg rounded-lg bg-[#1c1c24] p-6 shadow-lg">
@@ -33,7 +43,14 @@ const Profile = () => {
         <div className="mt-4 w-full">
           <p className="mb-1 text-sm text-gray-400">Email:</p>
           <p className="mb-4 text-lg font-semibold text-white">
-            {currentUser.createdBy}
+          {/* {currentUser?.createdBy || "Email not available"} */}
+          {currentUser.createdBy}
+
+       
+  
+
+            {/* {currentUser.emailAddresses[0]?.emailAddress} */}
+
           </p>
 
           <p className="mb-1 text-sm text-gray-400">Username:</p>
