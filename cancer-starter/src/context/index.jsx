@@ -130,6 +130,7 @@ export const StateContextProvider = ({ children }) => {
         .set(dataToUpdate)
         .where(eq(Records.id, documentID))
         .returning();
+        // return updatedRecords[0];
     } catch (error) {
       console.error("Error updating record:", error);
       return null;

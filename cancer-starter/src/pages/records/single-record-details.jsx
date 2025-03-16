@@ -20,9 +20,13 @@ function SingleRecordDetails() {
   const [uploading, setUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [processing, setIsProcessing] = useState(false);
+  // const [analysisResult, setAnalysisResult] = useState(
+  //   state.analysisResult || "",
+  // );
   const [analysisResult, setAnalysisResult] = useState(
-    state.analysisResult || "",
+    state?.analysisResult || ""
   );
+  
   const [filename, setFilename] = useState("");
   const [filetype, setFileType] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);

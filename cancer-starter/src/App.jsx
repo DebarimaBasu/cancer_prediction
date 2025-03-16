@@ -4,8 +4,12 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { useStateContext } from "./context";
 import { useAuth, useClerk, useUser } from "@clerk/clerk-react";
+import ScreeningSchedule from "./pages/records/ScreeningSchedule";
+import SingleRecordDetails from "./pages/records/single-record-details";
+
 import { useEffect } from "react";
 import { Home, Onboarding,Profile } from "./pages";
+import MedicalRecords from "./pages/records/index";
 import { Buffer } from "buffer";
 const App = () => {
   const {  currentUser,fetchUserByEmail  } = useStateContext();
@@ -60,12 +64,14 @@ return (
            <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/profile" element={<Profile />} /> 
          
-          {/* <Route path="/medical-records" element={<MedicalRecords />} />
+           <Route path="/medical-records" element={<MedicalRecords />} />
+           
           <Route
             path="/medical-records/:id"
             element={<SingleRecordDetails />}
           />
-          <Route path="/screening-schedules" element={<ScreeningSchedule />} /> */} 
+          
+          <Route path="/screening-schedules" element={<ScreeningSchedule />} /> 
         </Routes>
       </div>
     </div>

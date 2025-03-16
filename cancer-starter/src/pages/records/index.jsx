@@ -19,13 +19,16 @@ const Index = () => {
   } = useStateContext();
   const [userRecords, setUserRecords] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   useEffect(() => {
-    if (user) {
-      fetchUserByEmail(user.email.address);
-      fetchUserRecords(user.email.address);
+    const email = user?.primaryEmailAddress?.emailAddress;
+
+    if (email ) {
+      // prevEmailRef.current = email;
+      fetchUserByEmail(email);
+      fetchUserRecords(email);
     }
   }, [user, fetchUserByEmail, fetchUserRecords]);
+  
 
   useEffect(() => {
     setUserRecords(records);
@@ -48,7 +51,8 @@ const Index = () => {
           recordName: foldername,
           analysisResult: "",
           kanbanRecords: "",
-          createdBy: user.email.address,
+          createdBy: user.primaryEmailAddress.emailAddress,
+          // createdBy: user.email.address,
         });
 
         if (newRecord) {
