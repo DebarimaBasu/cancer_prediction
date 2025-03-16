@@ -1,6 +1,7 @@
 import React from 'react'
 import { Sidebar, Navbar } from "./components";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { useState } from 'react';
 import { useStateContext } from "./context";
 import { useAuth, useClerk, useUser } from "@clerk/clerk-react";
 import { useEffect } from "react";
@@ -27,12 +28,24 @@ const App = () => {
     }
   }, [isSignedIn, user, fetchUserByEmail, redirectToSignIn, isLoaded]);
 
-  useEffect(() => {
-    if (user && currentUser === null) {
-      console.log("Redirecting to onboarding");
-      navigate("/onboarding"); // Redirect ONLY if the user is signed in but not in the database
-    }
-  }, [user, currentUser, navigate]);
+  // useEffect(() => {
+  //   if (user && currentUser=== null) {
+  //     console.log("Redirecting to onboarding");
+  //     navigate("/profile");
+    
+  //   }
+  
+  // }, [user, currentUser, navigate]);
+  const [loading, setLoading] = useState(true);
+
+
+useEffect(() => {
+  if (!loading && user && currentUser === null) {
+    console.log("Redirecting to onboarding");
+    navigate("/onboarding");
+  }
+}, [loading, user, currentUser]);
+
 return (
     <div className="sm:-8 relative flex min-h-screen flex-row bg-[#13131a] p-4">
       <div className="relative mr-10 hidden sm:flex">

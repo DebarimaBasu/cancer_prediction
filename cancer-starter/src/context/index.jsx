@@ -23,27 +23,41 @@ export const StateContextProvider = ({ children }) => {
   }, []);
 
   // Function to fetch user details by email
-  const fetchUserByEmail = useCallback(async (email) => {
-    if (!email) return; // Prevent calling with undefined
+ 
+  const fetchUserByEmail = useCallback(async (emailObj) => {
+    if (!emailObj) return; // Prevent calling with undefined/null
+  
+    const email = typeof emailObj === "string" ? emailObj : emailObj.emailAddress; // Extract email
+  
+    if (!email || typeof email !== "string") {
+      console.error("❌ Invalid email format:", email);
+      return;
+    }
+  
+    console.log("Fetching user for email:", email);
   
     try {
       const result = await db
         .select()
         .from(Users)
-        .where(eq(Users.createdBy, email))
+        .where(eq(Users.createdBy, email.toLowerCase())) // Ensure case insensitivity
         .execute();
   
+      console.log("Database query result:", result);
+  
       if (result.length > 0) {
-        console.log("User found:", result[0]); // Debugging
-        setCurrentUser(result[0]); // ✅ Set only one user
+        console.log("✅ User found:", result[0]); // Always take the first user
+        setCurrentUser(result[0]); 
       } else {
-        console.log("No user found, redirecting to onboarding"); // Debugging
-        setCurrentUser(null); // Ensure it's null so the redirect happens
+        console.log("❌ No user found, setting currentUser to null");
+        setCurrentUser(null);
       }
     } catch (error) {
-      console.error("Error fetching user by email:", error);
+      console.error("⚠️ Error fetching user by email:", error);
     }
   }, []);
+  
+  
   
   
   // const fetchUserByEmail = useCallback(async (email) => {
@@ -121,6 +135,34 @@ export const StateContextProvider = ({ children }) => {
       return null;
     }
   }, []);
+  const handleUserCreation = async (user) => {
+    if (!user) return;
+  
+    const email = user.emailAddress.toLowerCase();
+  
+    console.log("Checking if user exists before inserting:", email);
+  
+    const existingUser = await db
+      .select()
+      .from(Users)
+      .where(eq(Users.createdBy, email))
+      .execute();
+  
+    if (existingUser.length > 0) {
+      console.log("✅ User already exists, skipping insertion.");
+      return;
+    }
+  
+    console.log("🆕 User does not exist, inserting new user...");
+  
+    await db.insert(Users).values({
+      createdBy: email,
+      name: user.fullName || "New User",
+    });
+  
+    console.log("🎉 User inserted successfully!");
+  };
+  
 
   return (
     <StateContext.Provider
@@ -134,6 +176,7 @@ export const StateContextProvider = ({ children }) => {
         createRecord,
         currentUser,
         updateRecord,
+        handleUserCreation
       }}
     >
       {children}
