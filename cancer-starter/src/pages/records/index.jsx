@@ -3,7 +3,7 @@ import { IconCirclePlus } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "@clerk/clerk-react";
-import { useStateContext } from "../../context/index";
+import { useStateContext } from "../../context/index.jsx";
 import CreateRecordModal from "./components/create-record-modal"; // Adjust the import path
 import RecordCard from "./components/record-card"; // Adjust the import path
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Sidebar, Navbar } from "./components";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useState } from 'react';
-import { useStateContext } from "./context";
+import { useStateContext } from "./context/index.jsx";
 import { useAuth, useClerk, useUser } from "@clerk/clerk-react";
 import ScreeningSchedule from "./pages/records/ScreeningSchedule";
 import SingleRecordDetails from "./pages/records/single-record-details";

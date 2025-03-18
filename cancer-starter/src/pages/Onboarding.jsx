@@ -109,7 +109,7 @@
 // export default Onboarding;
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useStateContext } from "../context";
+import { useStateContext } from "../context/index.jsx";
 import { useUser } from "@clerk/clerk-react";
 
 

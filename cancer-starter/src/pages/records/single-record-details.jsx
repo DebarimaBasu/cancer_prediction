@@ -5,7 +5,7 @@ import {
   IconProgress,
 } from "@tabler/icons-react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useStateContext } from "../../context/index";
+import { useStateContext } from "../../context/index.jsx";
 import ReactMarkdown from "react-markdown";
 import FileUploadModal from "./components/file-upload-modal";
 import RecordDetailsHeader from "./components/record-details-header";

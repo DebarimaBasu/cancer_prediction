@@ -9,7 +9,7 @@ if (!PUBLISHABLE_KEY) {
 }
 
 
-import { StateContextProvider } from "./context";
+import { StateContextProvider } from "./context/index.jsx";
 import App from "./App";
 import "./index.css";
 // import { PrivyProvider } from "@privy-io/react-auth";

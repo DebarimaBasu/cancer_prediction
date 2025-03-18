@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser, useAuth, SignInButton } from "@clerk/clerk-react";
-//import { useStateContext } from "../context"; // Adjust the import path
+import { useStateContext } from "../context/index.jsx"; // Adjust the import path
 
 import { CustomButton } from ".";
 
@@ -13,31 +13,31 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
-//   const { fetchUsers, users, fetchUserRecords } = useStateContext();
+ const { fetchUsers, users, fetchUserRecords } = useStateContext();
 
   const { isSignedIn, user } = useUser();
   const { signOut } = useAuth();
-  console.log("user informatio",user)
+ 
 
-//   const fetchUserInfo = useCallback(async () => {
-//     if (!user) return;
+  const fetchUserInfo = useCallback(async () => {
+    if (!user) return;
 
-//     try {
-//       await fetchUsers();
-//       const existingUser = users.find((u) => u.createdBy === user.primaryEmailAddress);
-//       if (existingUser) {
-//         await fetchUserRecords(user.primaryEmailAddress);
-//       }
-//     } catch (error) {
-//       console.error("Error fetching user info:", error);
-//     }
-//   }, [user, fetchUsers, users, fetchUserRecords]);
+    try {
+      await fetchUsers();
+      const existingUser = users.find((u) => u.createdBy === user.primaryEmailAddress);
+      if (existingUser) {
+        await fetchUserRecords(user.primaryEmailAddress);
+      }
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+    }
+  }, [user, fetchUsers, users, fetchUserRecords]);
 
-//   useEffect(() => {
-//     if (isSignedIn && user) {
-//       fetchUserInfo();
-//     }
-//   }, [isSignedIn, user, fetchUserInfo]);
+  useEffect(() => {
+    if (isSignedIn && user) {
+      fetchUserInfo();
+    }
+  }, [isSignedIn, user, fetchUserInfo]);
 
   const handleLoginLogout = useCallback(() => {
     if (isSignedIn) {
