@@ -42,16 +42,17 @@ const Profile = () => {
         <h1 className="mb-2 text-3xl font-semibold text-white">User Profile</h1>
         <div className="mt-4 w-full">
           <p className="mb-1 text-sm text-gray-400">Email:</p>
+         
           <p className="mb-4 text-lg font-semibold text-white">
           {/* {currentUser?.createdBy || "Email not available"} */}
           {currentUser.createdBy}
-
+          </p>
        
   
 
             {/* {currentUser.emailAddresses[0]?.emailAddress} */}
 
-          </p>
+          {/* </p> */}
 
           <p className="mb-1 text-sm text-gray-400">Username:</p>
           <p className="mb-4 text-lg font-semibold text-white">
