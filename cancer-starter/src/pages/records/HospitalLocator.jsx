@@ -1,24 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+
 const defaultLocation = { lat: 28.6139, lng: 77.2090 }; // New Delhi
-
-useEffect(() => {
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      setLocation({
-
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      });
-    },
-    () => {
-      console.warn("Using default location: New Delhi");
-      setLocation(defaultLocation);
-    }
-  );
-}, []);
-
 
 const HospitalLocator = () => {
   const [location, setLocation] = useState(null);
@@ -32,7 +16,10 @@ const HospitalLocator = () => {
           lng: position.coords.longitude,
         });
       },
-      (error) => console.error("Error getting location:", error)
+      () => {
+        console.warn("Using default location: New Delhi");
+        setLocation(defaultLocation);
+      }
     );
   }, []);
 
@@ -67,7 +54,11 @@ const HospitalLocator = () => {
             <Marker key={index} position={[hospital.lat, hospital.lon]}>
               <Popup>
                 <h3>{hospital.display_name}</h3>
-                <a href={`https://www.openstreetmap.org/?mlat=${hospital.lat}&mlon=${hospital.lon}&zoom=14`} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`https://www.openstreetmap.org/?mlat=${hospital.lat}&mlon=${hospital.lon}&zoom=14`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   View on Map
                 </a>
               </Popup>
