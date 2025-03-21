@@ -235,7 +235,7 @@
 import { useState } from "react";
 import { OpenAI } from "openai";
 
-// const openai = new OpenAI({ apiKey: "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", dangerouslyAllowBrowser: true });
+// const openai = new OpenAI({ apiKey: "", dangerouslyAllowBrowser: true });
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([]);
