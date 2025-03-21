@@ -7,6 +7,7 @@ useEffect(() => {
   navigator.geolocation.getCurrentPosition(
     (position) => {
       setLocation({
+
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
