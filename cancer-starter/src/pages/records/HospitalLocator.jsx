@@ -42,10 +42,16 @@ const HospitalLocator = () => {
   }, [location]);
 
   return (
-    <div>
-      <h2>Nearest Cancer Hospitals</h2>
+  
+    <div >
+    <h1 className="text-2xl font-bold text-center text-white mb-4">
+ Check Nearby Hospitals Location
+</h1>
+
+
+     
       {location && (
-        <MapContainer center={[location.lat, location.lng]} zoom={13} style={{ height: "500px", width: "100%" }}>
+        <MapContainer center={[location.lat, location.lng]} zoom={13} style={{ height: "400px", width: "100%" }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <Marker position={[location.lat, location.lng]}>
             <Popup>You are here</Popup>
