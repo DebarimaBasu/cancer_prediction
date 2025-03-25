@@ -45,7 +45,7 @@ const HospitalLocator = () => {
   
     <div >
     <h1 className="text-2xl font-bold text-center text-white mb-4">
- Check Nearby Hospitals Location
+ Check Nearby Hospitals Location 
 </h1>
 
 

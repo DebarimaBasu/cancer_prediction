@@ -46,7 +46,7 @@ export default function Predict() {
   return (
     <div className="p-6 max-w-2xl mx-auto bg-gray-800 shadow-md rounded-lg">
       <h1 className="text-2xl font-bold mb-4 text-white text-center">
-       put the correct data
+       put the correct data 
       </h1>
       <form onSubmit={handleSubmit} className="space-y-3">
         {/* Grid layout for inputs */}

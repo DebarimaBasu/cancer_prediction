@@ -17,6 +17,7 @@
     "@google/generative-ai": "^0.16.0",
     "@neondatabase/serverless": "^0.9.4",
     "@privy-io/react-auth": "1.65.0",
+    "@react-google-maps/api": "^2.20.6",
     "@tabler/icons-react": "^3.7.0",
     "@thirdweb-dev/react": "^3",
     "@thirdweb-dev/sdk": "^3",
