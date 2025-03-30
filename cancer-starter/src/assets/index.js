@@ -1,4 +1,4 @@
-import sun from "./sun.svg";
+
 import search from "./search.svg";
 import menu from "./menu.svg";
 import loader from "./loader.svg";
@@ -8,4 +8,5 @@ import user from "./user.svg";
 import apps from "./apps.svg";
 import predict from "./predict.svg";
 import location from "./location.svg";
-export { sun, search, menu, loader, records, screening, user, apps, predict ,location};
+import chatbot from "./chatbot.svg";
+export {  search, menu, loader, records, screening, user, apps, predict ,location,chatbot};

@@ -8,6 +8,7 @@ import ScreeningSchedule from "./pages/records/ScreeningSchedule";
 import SingleRecordDetails from "./pages/records/single-record-details";
 import Predict from './pages/records/predict.jsx';
 import HospitalLocator from './pages/records/HospitalLocator.jsx';
+import ChatBot from './pages/records/chatBot.jsx';
 import { useEffect } from "react";
 import { Home, Onboarding,Profile } from "./pages";
 import MedicalRecords from "./pages/records/index";
@@ -75,6 +76,7 @@ return (
           <Route path="/screening-schedules" element={<ScreeningSchedule />} /> 
           <Route path="/predict" element={<Predict/>} /> 
           <Route path="/location" element={<HospitalLocator/>} /> 
+          <Route path="/chatbot" element={<ChatBot/>} />
           
         </Routes>
       </div>

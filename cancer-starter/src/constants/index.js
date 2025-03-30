@@ -1,4 +1,4 @@
-import { records, screening, user, apps ,predict,location} from "../assets";
+import { records, screening, user, apps ,predict,location, chatbot} from "../assets";
 
 export const navlinks = [
   {
@@ -33,4 +33,9 @@ export const navlinks = [
     link:"/location"
 
   },
+  {
+    name:"chatbot",
+    imgUrl: chatbot,
+    link:"/chatbot"
+  }
 ];
