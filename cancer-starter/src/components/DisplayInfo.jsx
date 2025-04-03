@@ -126,13 +126,13 @@ const DisplayInfo = () => {
 
   return (
     <div className="flex flex-wrap gap-[26px]">
-      <div className="mt-7 grid w-full gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2">
+      <div className="mt-8 grid w-full gap-10 sm:grid-cols-2 sm:gap-10 lg:grid-cols-2 ">
         {metricsData.slice(0, 2).map((metric) => (
           <MetricsCard key={metric.title} {...metric} />
         ))}
       </div>
 
-      <div className="mt-[9px] grid w-full gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+      <div className="mt-[9px] grid w-full  sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
         {metricsData.slice(2).map((metric) => (
           <MetricsCard key={metric.title} {...metric} />
         ))}
