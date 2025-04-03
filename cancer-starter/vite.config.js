@@ -11,17 +11,43 @@ import { defineConfig } from "vite";
 //   },
 //   base: "./",
 // });
+import path from "path";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite"
+
+import path from "path";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+// export default defineConfig({
+//   plugins: [react()],
+//   resolve: {
+//     alias: {
+//       "@": path.resolve(__dirname, "./src"),
+//     },
+//   },
+//   base: "./",
+//   server: {
+//     hmr: true,
+//     watch: {
+//       usePolling: true,
+//     },
+//     strictPort: true,
+//   },
+// });
+
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(),tailwindcss()],     
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": path.resolve(__dirname, "./src"), // ✅ Import alias
     },
   },
   base: "./",
-  
   server: {
-    hmr:true,
+    hmr: true,
     watch: {
       usePolling: true, // ✅ Ensures Vite detects file changes
     },
