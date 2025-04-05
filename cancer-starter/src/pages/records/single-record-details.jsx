@@ -47,6 +47,8 @@ function SingleRecordDetails() {
     setFileType(file.type);
     setFilename(file.name);
     setFile(file);
+
+    
   };
 
   const readFileAsBase64 = (file) => {
