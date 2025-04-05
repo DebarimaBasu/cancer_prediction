@@ -88,7 +88,7 @@ const DisplayInfo = () => {
       title: "How prediction works",
       subtitle: "View",
       icon: IconZoomQuestionFilled,
-      onClick: () => navigate("/appointments/work"),
+      onClick: () => navigate("/work"),
     },
     {
       title: "Treatment Process",

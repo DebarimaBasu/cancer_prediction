@@ -155,10 +155,10 @@ function SingleRecordDetails() {
 
   return (
     <div className="flex flex-wrap gap-[26px]">
-      <button
+      <button 
         type="button"
         onClick={handleOpenModal}
-        className="mt-6 inline-flex items-center gap-x-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-[#13131a] dark:text-white dark:hover:bg-neutral-800"
+        className="mt-6 inline-flex items-center gap-x-2 rounded-full border border-green-400 bg-[#17171e] px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-800 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-[#13131a] dark:text-white dark:hover:bg-neutral-800"
       >
         <IconFileUpload />
         Upload Reports
@@ -173,7 +173,7 @@ function SingleRecordDetails() {
         filename={filename}
       />
       <RecordDetailsHeader recordName={state.recordName} />
-      <div className="w-full">
+      <div className="w-full ">
         <div className="flex flex-col">
           <div className="-m-1.5 overflow-x-auto">
             <div className="inline-block min-w-full p-1.5 align-middle">

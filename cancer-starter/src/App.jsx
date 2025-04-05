@@ -12,7 +12,7 @@ import ChatBot from './pages/records/chatBot.jsx';
 import { useEffect } from "react";
 import { Home, Onboarding,Profile } from "./pages";
 import MedicalRecords from "./pages/records/index";
- import work from './pages/records/work.jsx';
+ import Process from './pages/records/Process.jsx';
 import { Buffer } from "buffer";
 const App = () => {
   const {  currentUser,fetchUserByEmail  } = useStateContext();
@@ -78,7 +78,7 @@ return (
           <Route path="/predict" element={<Predict/>} /> 
           <Route path="/location" element={<HospitalLocator/>} /> 
           <Route path="/chatbot" element={<ChatBot/>} />
-          <Route path="/work" element={<work/>} />
+          <Route path="/work" element={<Process/>} />
           
         </Routes>
       </div>

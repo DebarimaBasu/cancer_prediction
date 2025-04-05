@@ -25,7 +25,7 @@ const FileUploadModal = ({
           viewBox="0 0 24 24"
           aria-hidden="true"
           fill="currentColor"
-          className="h-12 w-12 opacity-75"
+          className="h-12 w-12 opacity-75 "
         >
           <path
             fillRule="evenodd"
