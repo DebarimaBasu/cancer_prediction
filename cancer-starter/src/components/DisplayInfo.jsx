@@ -95,7 +95,7 @@ const DisplayInfo = () => {
       subtitle: "View",
       icon: IconCircleDashedCheck,
 
-      onClick: () => navigate("/treatment/progress"),
+      onClick: () => navigate("/process"),
     },
     {
       title: "Total Folders",
@@ -107,19 +107,19 @@ const DisplayInfo = () => {
       title: "Doctor chart",
       subtitle: "View",
       icon: IconStethoscope,
-      onClick: () => navigate("/screenings"),
+      onClick: () => navigate("/doctor"),
     },
     {
       title: "basic symptoms",
       subtitle: "View",
        icon: IconAlertHexagonFilled,
-      onClick: () => navigate("/screenings/completed"),
+      onClick: () => navigate("/symptom"),
     },
     {
       title: "check-diet chart",
       subtitle: "View",
      icon: IconFidgetSpinner,
-      onClick: () => navigate("/screenings/pending"),
+      onClick: () => navigate("/diet"),
     },
     
   ];

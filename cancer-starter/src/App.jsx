@@ -14,6 +14,10 @@ import { Home, Onboarding,Profile } from "./pages";
 import MedicalRecords from "./pages/records/index";
  import Process from './pages/records/Process.jsx';
 import { Buffer } from "buffer";
+import BreastCancerSymptoms from './pages/records/BreastCancerSymptoms.jsx';
+import DietChart from './pages/records/DietChart.jsx';
+import UploadDoctor from './pages/records/uploadDoctor.jsx';
+import TreatmentProcess from './pages/records/TreatmentProcess.jsx';
 const App = () => {
   const {  currentUser,fetchUserByEmail  } = useStateContext();
   const { isSignedIn, user,isLoaded, } = useUser();
@@ -79,6 +83,10 @@ return (
           <Route path="/location" element={<HospitalLocator/>} /> 
           <Route path="/chatbot" element={<ChatBot/>} />
           <Route path="/work" element={<Process/>} />
+          <Route path="/symptom" element={<BreastCancerSymptoms/>} />
+          <Route path="/diet" element={<DietChart/>} />
+          <Route path="/process" element={<TreatmentProcess/>} />
+          <Route path="/doctor" element={<UploadDoctor/>} />
           
         </Routes>
       </div>
