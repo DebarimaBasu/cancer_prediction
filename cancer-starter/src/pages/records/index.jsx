@@ -66,14 +66,29 @@ const Index = () => {
     }
   };
 
+  // const handleNavigate = (name) => {
+  //   const filteredRecords = userRecords.filter(
+  //     (record) => record.recordName === name,
+  //   );
+  //   navigate(`/medical-records/${name}`, {
+  //     state: filteredRecords[0],
+  //   });
+  // };
   const handleNavigate = (name) => {
-    const filteredRecords = userRecords.filter(
-      (record) => record.recordName === name,
+    const matchedRecord = userRecords.find(
+      (record) => record.recordName === name
     );
+  
+    if (!matchedRecord) {
+      console.warn(`No record found with name: ${name}`);
+      return;
+    }
+  
     navigate(`/medical-records/${name}`, {
-      state: filteredRecords[0],
+      state: matchedRecord,
     });
   };
+  
 
   return (
     <div className="flex flex-wrap gap-[26px]">
