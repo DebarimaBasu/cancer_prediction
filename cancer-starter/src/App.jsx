@@ -47,16 +47,23 @@ const App = () => {
   //   }
   
   // }, [user, currentUser, navigate]);
-  const [loading, setLoading] = useState(true);
+  const [hasFetched, setHasFetched] = useState(false);
 
-
-useEffect(() => {
-  if ( user && currentUser === null) {
-    console.log("Redirecting to onboarding");
-    navigate("/onboarding");
-  }
-}, [loading, user, currentUser]);
-
+  useEffect(() => {
+    if (!loading && !hasFetched) {
+      setHasFetched(true);
+    }
+  }, [loading]);
+  
+  useEffect(() => {
+    if (!loading && hasFetched) {
+      if (user && currentUser === null) {
+        console.log("Redirecting to onboarding");
+        navigate("/onboarding");
+      }
+    }
+  }, [loading, hasFetched, user, currentUser]);
+  
 return (
     <div className="sm:-8 relative flex min-h-screen flex-row bg-[#13131a] p-4">
       <div className="relative mr-10 hidden sm:flex">
