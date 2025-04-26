@@ -6,11 +6,11 @@ export const navlinks = [
     imgUrl: apps,
     link: "/",
   },
-  {
-    name: "records",
-    imgUrl: records,
-    link: "/medical-records",
-  },
+  // {
+  //   name: "records",
+  //   imgUrl: records,
+  //   link: "/medical-records",
+  // },
   {
     name: "screening",
     imgUrl: screening,

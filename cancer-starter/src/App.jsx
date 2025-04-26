@@ -5,13 +5,13 @@ import { useState } from 'react';
 import { useStateContext } from "./context/index.jsx";
 import { useAuth, useClerk, useUser } from "@clerk/clerk-react";
 import ScreeningSchedule from "./pages/records/ScreeningSchedule";
-import SingleRecordDetails from "./pages/records/single-record-details";
+
 import Predict from './pages/records/predict.jsx';
 import HospitalLocator from './pages/records/HospitalLocator.jsx';
 import ChatBot from './pages/records/chatBot.jsx';
 import { useEffect } from "react";
 import { Home, Onboarding,Profile } from "./pages";
-import MedicalRecords from "./pages/records/index";
+// import MedicalRecords from "./pages/records/index";
  import Process from './pages/records/Process.jsx';
 import { Buffer } from "buffer";
 import BreastCancerSymptoms from './pages/records/BreastCancerSymptoms.jsx';
@@ -51,7 +51,7 @@ const App = () => {
 
 
 useEffect(() => {
-  if (!loading && user && currentUser === null) {
+  if ( user && currentUser === null) {
     console.log("Redirecting to onboarding");
     navigate("/onboarding");
   }
@@ -70,13 +70,8 @@ return (
           <Route path="/" element={<Home/>} />
            <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/profile" element={<Profile />} /> 
-         
-           <Route path="/medical-records" element={<MedicalRecords />} />
+          
            
-          <Route
-            path="/medical-records/:id"
-            element={<SingleRecordDetails />}
-          />
           
           <Route path="/screening-schedules" element={<ScreeningSchedule />} /> 
           <Route path="/predict" element={<Predict/>} /> 

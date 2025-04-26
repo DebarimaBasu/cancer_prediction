@@ -107,15 +107,16 @@ const Index = () => {
         onCreate={createFolder}
       />
 
-      <div className="grid w-full gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-        {userRecords?.map((record) => (
-          <RecordCard
-            key={record.recordName}
-            record={record}
-            onNavigate={handleNavigate}
-          />
-        ))}
-      </div>
+<div className="grid w-full gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+  {userRecords?.map((record) => (
+    <RecordCard
+      key={record._id} // Ensure this is a unique identifier
+      record={record}
+      onNavigate={handleNavigate}
+    />
+  ))}
+</div>
+
     </div>
   );
 };
