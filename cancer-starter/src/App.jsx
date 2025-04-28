@@ -19,9 +19,10 @@ import DietChart from './pages/records/DietChart.jsx';
 import UploadDoctor from './pages/records/uploadDoctor.jsx';
 import TreatmentProcess from './pages/records/TreatmentProcess.jsx';
 const App = () => {
-  const {  currentUser,fetchUserByEmail  } = useStateContext();
-  const { isSignedIn, user,isLoaded, } = useUser();
-  const { redirectToSignIn } = useClerk();
+  const { user, isSignedIn, isLoaded, redirectToSignIn, currentUser } = useStateContext();
+  // const {  currentUser,fetchUserByEmail  } = useStateContext();
+  // const { isSignedIn,isLoaded, } = useUser();
+  // const { redirectToSignIn } = useClerk();
   const navigate = useNavigate();
   useEffect(() => {
     if (!window.Buffer) {
@@ -30,14 +31,22 @@ const App = () => {
   }, []);
   
   useEffect(() => {
-   if (!isLoaded) return; 
-
+    console.log("isLoaded:", isLoaded);
+    console.log("isSignedIn:", isSignedIn);
+    console.log("user:", user);
+    console.log("currentUser:", currentUser);
+  
+    if (!isLoaded) return; // Wait for Clerk to finish loading
+  
     if (!isSignedIn) {
-      redirectToSignIn(); // Redirect only if user is NOT signed in
-    } else if (user) {
-      fetchUserByEmail(user.primaryEmailAddress); // Fetch user details
+      console.log("Not signed in. Redirecting to Sign In.");
+      redirectToSignIn();
+    } else if (user && !currentUser) {
+      console.log("Signed in, but no currentUser. Redirecting to onboarding.");
+      navigate("/onboarding");
     }
-  }, [isSignedIn, user, fetchUserByEmail, redirectToSignIn, isLoaded]);
+  }, [isSignedIn, user, currentUser, isLoaded, navigate]);
+  
 
   // useEffect(() => {
   //   if (user && currentUser=== null) {
@@ -47,22 +56,17 @@ const App = () => {
   //   }
   
   // }, [user, currentUser, navigate]);
-  const [hasFetched, setHasFetched] = useState(false);
-
-  useEffect(() => {
-    if (!loading && !hasFetched) {
-      setHasFetched(true);
-    }
-  }, [loading]);
+ 
+  // // const { user, loading } = useUser(); 
+  // useEffect(() => {
+  //   if (loading) return; // Don't run if still loading
   
-  useEffect(() => {
-    if (!loading && hasFetched) {
-      if (user && currentUser === null) {
-        console.log("Redirecting to onboarding");
-        navigate("/onboarding");
-      }
-    }
-  }, [loading, hasFetched, user, currentUser]);
+  //   if (user && currentUser === null) {
+  //     console.log("Redirecting to onboarding");
+  //     navigate("/onboarding");
+  //   }
+  // }, [loading, user, currentUser]);
+  
   
 return (
     <div className="sm:-8 relative flex min-h-screen flex-row bg-[#13131a] p-4">

@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useCallback } from "react";
 import { db } from "../utils/dbConfig"; // Adjust the path to your dbConfig
 import { Users, Records } from "../utils/schema"; // Adjust the path to your schema definitions
 import { eq } from "drizzle-orm";
-
+import { useNavigate } from "react-router-dom";
 // Create a context
 const StateContext = createContext();
 
@@ -11,6 +11,7 @@ export const StateContextProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [records, setRecords] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  
 
   // Function to fetch all users
   const fetchUsers = useCallback(async () => {
@@ -24,10 +25,44 @@ export const StateContextProvider = ({ children }) => {
 
   // Function to fetch user details by email
  
-  const fetchUserByEmail = useCallback(async (emailObj) => {
-    if (!emailObj) return; // Prevent calling with undefined/null
+  // const fetchUserByEmail = useCallback(async (emailObj) => {
+  //   if (!emailObj) return; // Prevent calling with undefined/null
   
-    const email = typeof emailObj === "string" ? emailObj : emailObj.emailAddress; // Extract email
+  //   const email = typeof emailObj === "string" ? emailObj : emailObj.emailAddress; // Extract email
+  
+  //   if (!email || typeof email !== "string") {
+  //     console.error("❌ Invalid email format:", email);
+  //     return;
+  //   }
+  
+  //   console.log("Fetching user for email:", email);
+  
+  //   try {
+  //     const result = await db
+  //       .select()
+  //       .from(Users)
+  //       .where(eq(Users.createdBy, email.toLowerCase())) // Ensure case insensitivity
+  //       .execute();
+  
+  //     console.log("Database query result:", result);
+  
+  //     if (result.length > 0) {
+  //       console.log("✅ User found:", result[0]); // Always take the first user
+  //       setCurrentUser(result[0]); 
+  //     } else {
+  //       console.log("❌ No user found, setting currentUser to null");
+  //       setCurrentUser(null);
+  //     }
+  //   } catch (error) {
+  //     console.error("⚠️ Error fetching user by email:", error);
+  //   }
+  // }, []);
+  const navigate=useNavigate();
+  const [loading, setLoading] = useState(false);
+  const fetchUserByEmail = useCallback(async (emailObj) => {
+    if (!emailObj) return;
+  
+    const email = typeof emailObj === "string" ? emailObj : emailObj.emailAddress;
   
     if (!email || typeof email !== "string") {
       console.error("❌ Invalid email format:", email);
@@ -37,26 +72,29 @@ export const StateContextProvider = ({ children }) => {
     console.log("Fetching user for email:", email);
   
     try {
+      setLoading(true);
       const result = await db
         .select()
         .from(Users)
-        .where(eq(Users.createdBy, email.toLowerCase())) // Ensure case insensitivity
+        .where(eq(Users.createdBy, email.toLowerCase()))
         .execute();
   
       console.log("Database query result:", result);
   
       if (result.length > 0) {
-        console.log("✅ User found:", result[0]); // Always take the first user
-        setCurrentUser(result[0]); 
+        console.log("✅ User found:", result[0]);
+        setCurrentUser(result[0]);
       } else {
         console.log("❌ No user found, setting currentUser to null");
         setCurrentUser(null);
+        navigate("/onboarding"); // Navigate to onboarding if no user found
       }
     } catch (error) {
       console.error("⚠️ Error fetching user by email:", error);
+    } finally {
+      setLoading(false);
     }
-  }, []);
-  
+  }, [navigate]);
   
   
   

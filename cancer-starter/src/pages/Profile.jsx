@@ -28,8 +28,8 @@ const Profile = () => {
       </div>
     );
   }
-  console.log("User:", user);
-  console.log("Primary Email:", user?.primaryEmailAddress?.emailAddress);
+  // console.log("User:", user);
+  // console.log("Primary Email:", user?.primaryEmailAddress?.emailAddress);
   
 
 
