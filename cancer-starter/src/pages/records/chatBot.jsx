@@ -7,17 +7,21 @@ const ChatBot = () => {
 
   const sendMessage = async () => {
     if (!message.trim()) return;
-
+  
     setLoading(true);
     setResponse("");
-
+  
     try {
       const res = await fetch("http://localhost:5000/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message }),
       });
-
+  
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+  
       const data = await res.json();
       if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
         setResponse(data.candidates[0].content.parts[0].text);
@@ -26,11 +30,12 @@ const ChatBot = () => {
       }
     } catch (error) {
       console.error("Error communicating with chatbot:", error);
-      setResponse("Failed to get a response.");
+      setResponse(`Failed to get a response: ${error.message}`);
     }
-
+  
     setLoading(false);
   };
+  
 
   return (
     <div className="p-4 max-w-md mx-auto bg-white rounded shadow-md">
