@@ -1,61 +1,72 @@
-import React, { useState } from "react";
+import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import {
+  MainContainer,
+  ChatContainer,
+  MessageList,
+  Message,
+  MessageInput,
+} from "@chatscope/chat-ui-kit-react";
+import { useState } from "react";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const ChatBot = () => {
-  const [message, setMessage] = useState("");
-  const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
+export const ChatBot = () => {
+  const [userInput, setUserInput] = useState("");
+  const [chatHistory, setChatHistory] = useState([]);
 
-  const sendMessage = async () => {
-    if (!message.trim()) return;
-  
-    setLoading(true);
-    setResponse("");
-  
-    try {
-      const res = await fetch("http://localhost:5000/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
-      });
-  
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-  
-      const data = await res.json();
-      if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
-        setResponse(data.candidates[0].content.parts[0].text);
-      } else {
-        setResponse("No response from AI.");
-      }
-    } catch (error) {
-      console.error("Error communicating with chatbot:", error);
-      setResponse(`Failed to get a response: ${error.message}`);
-    }
-  
-    setLoading(false);
+  const handleUserInput = (value) => {
+    console.log(value);
+    setUserInput(value);
   };
-  
+  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+  const sendMessage = async (messageText) => {
+    if (messageText.trim() === "") return;
+
+    try {
+      const prompt = messageText;
+      const result = await model.generateContent(prompt);
+      const response = result.response;
+      const text = response.text();
+      setChatHistory((prev) => [
+        ...prev,
+        { type: "user", message: messageText },
+        { type: "bot", message: text },
+      ]);
+      setUserInput("");
+      console.log(text);
+    } catch (e) {
+      console.log("Error occurred while fetching", e);
+    }
+  };
 
   return (
-    <div className="p-4 max-w-md mx-auto bg-white rounded shadow-md">
-      <h2 className="text-lg font-bold mb-2">Chat with AI</h2>
-      <textarea
-        className="w-full p-2 border rounded"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Ask something..."
-      />
-      <button
-        className="bg-blue-500 text-white px-4 py-2 mt-2 rounded"
-        onClick={sendMessage}
-        disabled={loading}
-      >
-        {loading ? "Thinking..." : "Send"}
-      </button>
-      {response && <p className="mt-4 p-2 bg-gray-100 rounded">{response}</p>}
+    <div style={{ position: "relative", height: "500px" }}>
+      <h1>chat bot</h1>
+      <MainContainer>
+        <ChatContainer>
+          <MessageList>
+            {chatHistory.map((elt, i) => (
+              <Message
+                key={i}
+                model={{
+                  message: elt.message,
+                  sender: elt.type,
+                  sentTime: "just now",
+
+                  direction: elt.type === "user" ? "outgoing" : "incoming",
+                }}
+              />
+            ))}
+          </MessageList>
+          <MessageInput
+            placeholder="Type message here"
+            value={userInput}
+            onChange={(value) => handleUserInput(value)}
+            onSend={sendMessage}
+          />
+        </ChatContainer>
+      </MainContainer>
     </div>
   );
 };
-
-export default ChatBot;
