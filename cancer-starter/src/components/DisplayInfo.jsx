@@ -98,10 +98,11 @@ const DisplayInfo = () => {
       onClick: () => navigate("/process"),
     },
     {
-      title: "Total Folders",
+      title: "precautions",
       subtitle: "View",
-      icon: IconFolder,
-      onClick: () => navigate("/medical-records"),
+      icon: IconHourglassHigh,
+      
+      onClick: () => navigate("/precaution"),
     },
     {
       title: "Doctor chart",

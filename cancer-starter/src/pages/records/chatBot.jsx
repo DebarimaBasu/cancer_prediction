@@ -41,8 +41,10 @@ export const ChatBot = () => {
   };
 
   return (
-    <div style={{ position: "relative", height: "500px" }}>
-      <h1>chat bot</h1>
+    <div className="flex flex-col items-center justify-center h-screen bg-[#13131a] p-4">
+      <div className="text-white text-2xl font-bold mb-4 ">Chat with AI</div>
+    <div style={{ position: "relative", height: "450px",width: "100%" }}>
+      
       <MainContainer>
         <ChatContainer>
           <MessageList>
@@ -67,6 +69,7 @@ export const ChatBot = () => {
           />
         </ChatContainer>
       </MainContainer>
+    </div>
     </div>
   );
 };

@@ -101,7 +101,7 @@ const UploadDoctor = () => {
       {/* Display Doctors */}
       <div className="mt-10 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {doctors.map((doc, i) => (
-          <div key={i} className="bg-slate-700 rounded-xl shadow p-4 text-center relative">
+          <div key={i} className="bg-slate-800 rounded-xl shadow p-4 text-center relative">
             <img
               src={doc.image}
               alt={doc.name}

@@ -11,6 +11,7 @@ import HospitalLocator from './pages/records/HospitalLocator.jsx';
 import {ChatBot} from './pages/records/chatBot.jsx';
 import { useEffect } from "react";
 import { Home, Onboarding,Profile } from "./pages";
+import Learning from './pages/records/precautions.jsx';
 // import MedicalRecords from "./pages/records/index";
  import Process from './pages/records/Process.jsx';
 import { Buffer } from "buffer";
@@ -93,6 +94,7 @@ return (
           <Route path="/diet" element={<DietChart/>} />
           <Route path="/process" element={<TreatmentProcess/>} />
           <Route path="/doctor" element={<UploadDoctor/>} />
+          <Route path="/precaution" element={<Learning/>} />
           
         </Routes>
       </div>
