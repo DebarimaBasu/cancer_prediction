@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import fetch from "node-fetch"; // if needed (or use global fetch if Node 18+)
 
 dotenv.config();
 
