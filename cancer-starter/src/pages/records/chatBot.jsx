@@ -41,10 +41,19 @@ export const ChatBot = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-[#13131a] p-4">
-      <div className="text-white text-2xl font-bold mb-4 ">Chat with AI</div>
-    <div style={{ position: "relative", height: "450px",width: "100%" }}>
-      
+    <div className="flex flex-col justify-center  h-screen bg-[#13131a] p-4"
+     style={{
+            backgroundImage:"url('/rob1.jpg')",
+              // "url('https://img.freepik.com/premium-photo/digital-illustration-friendly-chatbot-avatar-with-speech-bubble-smartphone-screen-symbolizing-ai-customer-support_1019851-3964.jpg?w=1380')", // You can change this URL
+          }}
+    >
+     
+      <div className="text-white text-2xl font-bold mb-4 ">Chat with rob</div>
+     
+    <div style={{ position: "relative", height: "600px",width: "50%" }}>
+    <div className="absolute top-4 left-4 bg-white bg-opacity-70 text-white text-sm px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition duration-300">
+    Hello! I'm your assistant 👋
+  </div>
       <MainContainer>
         <ChatContainer>
           <MessageList>

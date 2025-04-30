@@ -4,6 +4,7 @@ const UploadDoctor = () => {
   const [preview, setPreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [doctorName, setDoctorName] = useState("");
+  const [contactNumber, setContact] = useState("");
   const [specialty, setSpecialty] = useState("");
   const [doctors, setDoctors] = useState([]);
 
@@ -28,6 +29,7 @@ const UploadDoctor = () => {
       name: doctorName,
       specialty,
       image: preview,
+      contact: contactNumber,
     };
 
     const updatedDoctors = [...doctors, newDoctor];
@@ -36,6 +38,7 @@ const UploadDoctor = () => {
 
     // Reset form
     setDoctorName("");
+    setContact("");
     setSpecialty("");
     setPreview(null);
     setImageFile(null);
@@ -64,6 +67,14 @@ const UploadDoctor = () => {
           className="w-full mb-4 p-2 border rounded"
           value={doctorName}
           onChange={(e) => setDoctorName(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="contact number"
+          className="w-full mb-4 p-2 border rounded"
+          value={contactNumber}
+          onChange={(e) => setContact(e.target.value)}
           required
         />
         <input
@@ -107,8 +118,9 @@ const UploadDoctor = () => {
               alt={doc.name}
               className="w-full h-40 object-cover rounded-lg mb-2"
             />
-            <h3 className="font-semibold text-lg">{doc.name}</h3>
+            <h3 className="font-semibold text-lg text-gray-400">{doc.name}</h3>
             <p className="text-sm text-gray-500">{doc.specialty}</p>
+            <p className="text-sm text-gray-500">{doc.contact}</p>
 
             <button
               onClick={() => handleDelete(i)}
